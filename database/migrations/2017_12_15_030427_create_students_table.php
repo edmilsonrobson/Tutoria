@@ -20,6 +20,9 @@ class CreateStudentsTable extends Migration
             $table->unsignedInteger('scholarship_id')->nullable();
             $table->foreign('scholarship_id')->references('id')->on('scholarships')->onDelete('set null');
 
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
             $table->softDeletes();
         });
     }

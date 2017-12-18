@@ -21,8 +21,11 @@
                         </div>
                     </div>
 
-                    <div v-if="this.skillList">
-                        <hr>
+                    <hr>
+                    <div class="text-center">
+                        <sync-loader :color="'#2881B3'" :loading="loadingSkills"></sync-loader>
+                    </div>
+                    <div v-if="this.skillList.length">
                         <div class="row">
                             <div class="col col-sm-6 col-md-4" v-for="skill in this.skillList">
                                 <h4 class="text-center">{{ skill.name }} </h4>
@@ -48,9 +51,10 @@
 
 <script>
     import VueCircle from 'vue2-circle-progress';
+    import SyncLoader from 'vue-spinner/src/SyncLoader.vue';
 
     export default {
-        components: {'vue-circle': VueCircle},
+        components: {'vue-circle': VueCircle, 'sync-loader': SyncLoader},
 
         data() {
             return {
@@ -58,6 +62,7 @@
                 proficiency: '',
 
                 skillList: [],
+                loadingSkills: false,
             }
         },
 
@@ -90,6 +95,7 @@
 
                 }).then((value) => {
                     skill.proficiency = value;
+                    this.loadingSkills = true;
                     return axios.post('/skills/update/' + skill.name, {
                         proficiency: value,
                     });
@@ -98,10 +104,13 @@
                     return swal('Success', "Skill updated!", 'success');
                 }).catch((error) => {
                     swal('Error', error.message, 'error');
+                }).then(() => {
+                    this.loadingSkills = false;
                 });
             },
 
             removeSkill(skill) {
+                this.loadingSkills = true;
                 axios.delete('/skills/remove/' + skill.name, {
                     name: skill.name,
                 }).then((response) => {
@@ -111,6 +120,8 @@
                     });
                 }).catch((error) => {
                     console.log(error.response);
+                }).then(() => {
+                    this.loadingSkills = false;
                 });
             },
 
@@ -132,16 +143,21 @@
             },
 
             getSkills() {
-                axios.get('/skills')
-                    .then((response) => {
-                        const rawSkills = response.data;
-                        this.skillList = rawSkills.map((rawSkill) => {
-                            return {
-                                name: rawSkill.name,
-                                proficiency: rawSkill.pivot.proficiency,
-                            }
-                        });
-                    })
+                this.loadingSkills = true;
+
+                axios.get('/skills').then((response) => {
+                    const rawSkills = response.data;
+                    this.skillList = rawSkills.map((rawSkill) => {
+                        return {
+                            name: rawSkill.name,
+                            proficiency: rawSkill.pivot.proficiency,
+                        }
+                    });
+                }).catch((error) => {
+                    console.log(error.response);
+                }).then(() => {
+                    this.loadingSkills = false;
+                });
             },
 
             addSkill() {
@@ -156,6 +172,7 @@
                         return;
                     }
 
+                    this.loadingSkills = true;
                     axios.post('/skills', {
                         name: this.skillName,
                         proficiency: this.proficiency,
@@ -171,7 +188,9 @@
                         })
                         .catch((error) => {
                             console.log(error.response.data);
-                        });
+                        }).then(() => {
+                        this.loadingSkills = false;
+                    });
                 }
             },
         }

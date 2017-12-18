@@ -23,6 +23,7 @@
         "font-awesome": "^4.7.0",
         "sweetalert": "^2.1.0",
         "vue-router": "^3.0.1",
+        "vue-spinner": "^1.0.3",
         "vue2-circle-progress": "^1.2.1"
     }
 }
