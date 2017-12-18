@@ -50,11 +50,10 @@
 </template>
 
 <script>
-    import VueCircle from 'vue2-circle-progress';
     import SyncLoader from 'vue-spinner/src/SyncLoader.vue';
 
     export default {
-        components: {'vue-circle': VueCircle, 'sync-loader': SyncLoader},
+        components: {'sync-loader': SyncLoader},
 
         data() {
             return {

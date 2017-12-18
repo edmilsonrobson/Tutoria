@@ -18,10 +18,20 @@ Route::get('/', function () {
     return view('main');
 });
 
+/**
+ * Skills
+ */
+
 Route::get('/skills', 'SkillController@index');
 Route::post('/skills', 'SkillController@store');
 Route::post('/skills/update/{skill}', 'SkillController@update');
 Route::delete('/skills/remove/{skill}', 'SkillController@remove');
+
+/**
+ * Projects
+ */
+
+Route::get('/projects', 'ProjectController@index');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

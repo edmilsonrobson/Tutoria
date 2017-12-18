@@ -1,5 +1,6 @@
 <?php
 
+use App\Project;
 use App\Skill;
 use App\Student;
 use App\User;
@@ -18,6 +19,9 @@ class DatabaseSeeder extends Seeder
         factory(Student::class)->create(['user_id' => $user1->id]);
         $user1->skills()->attach(factory(Skill::class)->create(['name' => 'Python']), ['proficiency' => 35]);
         $user1->skills()->attach(factory(Skill::class)->create(['name' => 'PHP']), ['proficiency' => 75]);
+
+        $project = factory(Project::class)->create(['name' => 'Project ABC']);
+        $project->participants()->attach($user1);
 
 
     }

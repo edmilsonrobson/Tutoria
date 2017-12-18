@@ -11,7 +11,7 @@
             </router-link>
         </li>
         <li class="list-group-item">
-            <router-link to="/">
+            <router-link to="/projects">
                 <i class="fa fa-table" aria-hidden="true"></i> My Projects
             </router-link>
         </li>

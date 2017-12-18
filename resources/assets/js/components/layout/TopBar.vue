@@ -8,7 +8,7 @@
             <div class="col col-sm-10">
                 <div class="input-group mb-2 mb-sm-0">
                     <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input type="text" class="form-control" placeholder="Search for something (students, projects, skills)...">
                 </div>
             </div>
         </div>
