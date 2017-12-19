@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $user1->skills()->attach(factory(Skill::class)->create(['name' => 'Python']), ['proficiency' => 35]);
         $user1->skills()->attach(factory(Skill::class)->create(['name' => 'PHP']), ['proficiency' => 75]);
 
-        $project = factory(Project::class)->create(['name' => 'Project ABC']);
+        $project = $user1->student->scholarship->project;
+        $project->name = 'Project ABC';
         $project->participants()->attach($user1);
 
 

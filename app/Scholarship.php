@@ -9,5 +9,7 @@ class Scholarship extends Model
 {
     use SoftDeletes;
 
-    //
+    public function project() {
+        return $this->belongsTo(Project::class);
+    }
 }

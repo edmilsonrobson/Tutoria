@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProjectResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,6 @@ class ProjectController extends Controller
     }
 
     public function index() {
-        return Auth::user()->projects;
+        return ProjectResource::collection(Auth::user()->projects);
     }
 }

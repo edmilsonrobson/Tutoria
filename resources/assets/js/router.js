@@ -6,6 +6,7 @@ import HomeScreen from './components/screens/HomeScreen.vue';
 import ProfileScreen from './components/screens/ProfileScreen.vue';
 import SkillsScreen from './components/screens/SkillsScreen.vue';
 import ProjectsScreen from './components/screens/ProjectsScreen.vue';
+import HelpScreen from './components/screens/HelpScreen.vue';
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ export default new Router({
             path: '/projects',
             name: 'ProjectsScreen',
             component: ProjectsScreen,
+        },
+        {
+            path: '/help',
+            name: 'HelpScreen',
+            component: HelpScreen,
         }
     ]
 })

@@ -34,7 +34,7 @@
             </router-link>
         </li>
         <li class="list-group-item">
-            <router-link to="/">
+            <router-link to="/help">
                 <i class="fa fa-question-circle" aria-hidden="true"></i> Help
             </router-link>
         </li>

@@ -35,4 +35,20 @@ class User extends Authenticatable
     public function projects() {
         return $this->belongsToMany(Project::class)->withTimestamps();
     }
+
+    public function student() {
+        return $this->hasOne(Student::class);
+    }
+
+    public function isStudent() {
+        return ($this->student()->count() > 0);
+    }
+
+    public function tutor() {
+        return $this->hasOne(Tutor::class);
+    }
+
+    public function isTutor() {
+        return ($this->tutor()->count() > 0);
+    }
 }
