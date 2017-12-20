@@ -23,6 +23,10 @@ class CreateRatingsTable extends Migration
             $table->unsignedInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
 
+            $table->unsignedInteger('productivity_score');
+            $table->unsignedInteger('assiduity_score');
+            $table->unsignedInteger('proactivity_score');
+
             $table->softDeletes();
         });
     }

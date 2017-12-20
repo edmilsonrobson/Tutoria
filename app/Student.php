@@ -12,4 +12,12 @@ class Student extends Model
     public function scholarship() {
         return $this->belongsTo(Scholarship::class);
     }
+
+    public function ratings() {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function lastRating() {
+        return $this->ratings()->latest()->first();
+    }
 }
